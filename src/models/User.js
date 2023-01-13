@@ -31,5 +31,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  User.associate = (db) => {
+    User.hasMany(db.Todo, {
+      foreignKey: {
+        allownull: false,
+        name: "userId",
+      },
+      onDelete: "RESTRICT",
+    });
+  };
+
   return User;
 };
